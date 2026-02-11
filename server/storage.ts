@@ -1,38 +1,32 @@
-import { type User, type InsertUser } from "@shared/schema";
-import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
+import { db } from "./db";
+import { wifiConfigs, type WifiConfig, type InsertWifiConfig } from "@shared/schema";
+import { desc } from "drizzle-orm";
 
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  getRecentConfigs(): Promise<WifiConfig[]>;
+  createConfig(config: InsertWifiConfig): Promise<WifiConfig>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
-
-  constructor() {
-    this.users = new Map();
+export class DatabaseStorage implements IStorage {
+  async getRecentConfigs(): Promise<WifiConfig[]> {
+    return await db.select()
+      .from(wifiConfigs)
+      .orderBy(desc(wifiConfigs.createdAt))
+      .limit(10);
   }
 
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
-  }
-
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
-  }
-
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+  async createConfig(insertConfig: InsertWifiConfig): Promise<WifiConfig> {
+    // Explicitly destructure to ensure we NEVER store the password
+    // even if the type definition somehow allowed it.
+    // The DB schema doesn't have a password column, but this is double safety.
+    const { password, ...safeConfig } = insertConfig;
+    
+    const [config] = await db.insert(wifiConfigs)
+      .values(safeConfig)
+      .returning();
+      
+    return config;
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();
