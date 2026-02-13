@@ -34,7 +34,7 @@ export default function Home() {
               <Wifi className="w-5 h-5" />
             </div>
             <h1 className="text-xl font-display font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-700">
-              WiFi QR Print
+              와이파이 QR 생성기
             </h1>
           </div>
         </div>
@@ -47,9 +47,9 @@ export default function Home() {
           <div className="lg:col-span-7 space-y-8">
             <section className="bg-card rounded-3xl p-6 sm:p-8 shadow-sm border border-border/60">
               <div className="mb-6">
-                <h2 className="text-2xl font-display font-bold mb-2">Network Details</h2>
+                <h2 className="text-2xl font-display font-bold mb-2">네트워크 정보 입력</h2>
                 <p className="text-muted-foreground">
-                  Enter your Wi-Fi credentials to generate a QR code. Your password is never saved.
+                  와이파이 정보를 입력하여 QR 코드를 생성하세요. 비밀번호는 저장되지 않습니다.
                 </p>
               </div>
               
@@ -60,7 +60,7 @@ export default function Home() {
             </section>
 
             <section>
-              <h3 className="text-lg font-bold font-display mb-4 px-2">Recent Networks</h3>
+              <h3 className="text-lg font-bold font-display mb-4 px-2">최근 생성 내역</h3>
               <HistoryList onSelect={handleHistorySelect} />
             </section>
           </div>
@@ -69,9 +69,9 @@ export default function Home() {
           <div className="lg:col-span-5 lg:sticky lg:top-24">
             <div className="bg-secondary/30 rounded-3xl p-6 sm:p-8 border border-border/40 backdrop-blur-sm">
               <div className="mb-8 text-center">
-                <h2 className="text-xl font-display font-bold mb-2">Live Preview</h2>
+                <h2 className="text-xl font-display font-bold mb-2">미리보기</h2>
                 <p className="text-sm text-muted-foreground">
-                  This is how your card will look when printed
+                  인쇄될 카드의 모습입니다.
                 </p>
               </div>
 
@@ -81,7 +81,7 @@ export default function Home() {
 
               <div className="mt-8 flex justify-center">
                 <p className="text-xs text-center text-muted-foreground max-w-xs">
-                  Tip: Print multiple copies and place them in your guest room, living room, or office.
+                  팁: 여러 장을 인쇄하여 거실, 침실 또는 사무실에 비치해 보세요.
                 </p>
               </div>
             </div>
@@ -92,7 +92,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t mt-12 py-8 bg-white">
         <div className="max-w-7xl mx-auto px-4 text-center text-sm text-muted-foreground">
-          <p>Securely generated in your browser. Passwords are not stored.</p>
+          <p>브라우저에서 안전하게 생성됩니다. 비밀번호는 저장되지 않습니다.</p>
         </div>
       </footer>
 
