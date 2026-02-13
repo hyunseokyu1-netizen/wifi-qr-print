@@ -58,11 +58,6 @@ export default function Home() {
                 currentConfig={config}
               />
             </section>
-
-            <section>
-              <h3 className="text-lg font-bold font-display mb-4 px-2">최근 생성 내역</h3>
-              <HistoryList onSelect={handleHistorySelect} />
-            </section>
           </div>
 
           {/* Right Column: Preview */}
