@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { api, type InsertWifiConfig } from "@shared/routes";
+import { api } from "@shared/routes";
+import type { InsertWifiConfig } from "@shared/schema";
 
 export function useWifiConfigs() {
   return useQuery({
