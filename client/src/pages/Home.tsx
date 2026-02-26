@@ -1,6 +1,5 @@
 import { WifiForm } from "@/components/WifiForm";
 import { PrintableCard } from "@/components/PrintableCard";
-import { AdSense } from "@/components/AdSense";
 import { useState } from "react";
 import type { InsertWifiConfig } from "@shared/schema";
 import { Wifi } from "lucide-react";
@@ -12,17 +11,6 @@ export default function Home() {
     encryption: "WPA",
     hidden: false,
   });
-
-  const handleHistorySelect = (ssid: string, encryption: string, hidden: boolean) => {
-    // Note: Password is NOT stored in history for security, so user must re-enter it
-    setConfig((prev) => ({
-      ...prev,
-      ssid,
-      encryption,
-      hidden,
-      password: "", // Reset password as it's not saved
-    }));
-  };
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary/20">
@@ -43,7 +31,7 @@ export default function Home() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
-          {/* Left Column: Form & History */}
+          {/* Left Column: Form */}
           <div className="lg:col-span-7 space-y-8">
             <section className="bg-card rounded-3xl p-6 sm:p-8 shadow-sm border border-border/60">
               <div className="mb-6">
