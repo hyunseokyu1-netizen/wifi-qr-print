@@ -30,9 +30,9 @@ export function PrintableCard({ config }: PrintableCardProps) {
         </div>
         
         <h3 className="font-display font-bold text-2xl text-center text-foreground mb-1 leading-tight px-4">
-          와이파이 접속
+          Wi-Fi Access
         </h3>
-        <p className="text-muted-foreground text-sm font-medium">스캔하여 즉시 연결하세요</p>
+        <p className="text-muted-foreground text-sm font-medium">Scan to connect instantly</p>
       </div>
 
       <div className="relative z-10 bg-white p-4 rounded-2xl shadow-sm border border-border/40">
@@ -48,13 +48,13 @@ export function PrintableCard({ config }: PrintableCardProps) {
 
       <div className="relative z-10 w-full space-y-3 mt-4">
         <div className="flex items-center justify-between p-3 rounded-xl bg-secondary/50 border border-border/50">
-          <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">네트워크</span>
-          <span className="font-semibold text-foreground text-sm truncate max-w-[180px]">{config.ssid || "와이파이 이름"}</span>
+          <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Network</span>
+          <span className="font-semibold text-foreground text-sm truncate max-w-[180px]">{config.ssid || "My Network"}</span>
         </div>
         
         {config.password && (
           <div className="flex items-center justify-between p-3 rounded-xl bg-secondary/50 border border-border/50">
-            <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">비밀번호</span>
+            <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Password</span>
             <div className="flex items-center gap-2">
               <Lock className="w-3 h-3 text-muted-foreground" />
               <span className="font-mono text-sm font-medium text-foreground truncate max-w-[150px]">
@@ -67,14 +67,14 @@ export function PrintableCard({ config }: PrintableCardProps) {
         {config.hidden && (
            <div className="flex items-center justify-center gap-2 text-xs text-muted-foreground pt-1">
              <EyeOff className="w-3 h-3" />
-             <span>숨겨진 네트워크</span>
+             <span>Hidden Network</span>
            </div>
         )}
       </div>
       
       {/* Print footer */}
       <div className="absolute bottom-2 text-[10px] text-muted-foreground/40 font-mono">
-        WiFi QR 생성기
+        Generated via WiFi QR
       </div>
     </div>
   );

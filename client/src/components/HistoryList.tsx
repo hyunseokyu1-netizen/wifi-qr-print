@@ -23,9 +23,9 @@ export function HistoryList({ onSelect }: HistoryListProps) {
     return (
       <div className="text-center py-12 px-4 rounded-2xl border-2 border-dashed border-muted-foreground/20">
         <Wifi className="w-12 h-12 mx-auto text-muted-foreground/40 mb-3" />
-        <h3 className="font-semibold text-muted-foreground">생성 기록이 없습니다</h3>
+        <h3 className="font-semibold text-muted-foreground">No history yet</h3>
         <p className="text-sm text-muted-foreground/60 mt-1">
-          생성된 와이파이 코드가 여기에 표시됩니다.
+          Generated WiFi codes will appear here.
         </p>
       </div>
     );
@@ -50,10 +50,10 @@ export function HistoryList({ onSelect }: HistoryListProps) {
           <div className="flex items-center text-xs text-muted-foreground gap-3">
             <span className="flex items-center gap-1">
               <Clock className="w-3 h-3" />
-              {item.createdAt && format(new Date(item.createdAt), "yyyy년 MM월 dd일")}
+              {item.createdAt && format(new Date(item.createdAt), "MMM d, yyyy")}
             </span>
             {item.hidden && (
-              <span className="text-orange-500/80 font-medium">숨겨진 네트워크</span>
+              <span className="text-orange-500/80 font-medium">Hidden Network</span>
             )}
           </div>
         </button>

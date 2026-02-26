@@ -1,5 +1,6 @@
 import { WifiForm } from "@/components/WifiForm";
 import { PrintableCard } from "@/components/PrintableCard";
+import { HistoryList } from "@/components/HistoryList";
 import { useState } from "react";
 import type { InsertWifiConfig } from "@shared/schema";
 import { Wifi } from "lucide-react";
@@ -12,6 +13,17 @@ export default function Home() {
     hidden: false,
   });
 
+  const handleHistorySelect = (ssid: string, encryption: string, hidden: boolean) => {
+    // Note: Password is NOT stored in history for security, so user must re-enter it
+    setConfig((prev) => ({
+      ...prev,
+      ssid,
+      encryption,
+      hidden,
+      password: "", // Reset password as it's not saved
+    }));
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary/20">
       {/* Header */}
@@ -22,7 +34,7 @@ export default function Home() {
               <Wifi className="w-5 h-5" />
             </div>
             <h1 className="text-xl font-display font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-700">
-              와이파이 QR 생성기
+              WiFi QR Print
             </h1>
           </div>
         </div>
@@ -31,13 +43,13 @@ export default function Home() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
-          {/* Left Column: Form */}
+          {/* Left Column: Form & History */}
           <div className="lg:col-span-7 space-y-8">
             <section className="bg-card rounded-3xl p-6 sm:p-8 shadow-sm border border-border/60">
               <div className="mb-6">
-                <h2 className="text-2xl font-display font-bold mb-2">네트워크 정보 입력</h2>
+                <h2 className="text-2xl font-display font-bold mb-2">Network Details</h2>
                 <p className="text-muted-foreground">
-                  와이파이 정보를 입력하여 QR 코드를 생성하세요. 비밀번호는 저장되지 않습니다.
+                  Enter your Wi-Fi credentials to generate a QR code. Your password is never saved.
                 </p>
               </div>
               
@@ -46,15 +58,20 @@ export default function Home() {
                 currentConfig={config}
               />
             </section>
+
+            <section>
+              <h3 className="text-lg font-bold font-display mb-4 px-2">Recent Networks</h3>
+              <HistoryList onSelect={handleHistorySelect} />
+            </section>
           </div>
 
           {/* Right Column: Preview */}
           <div className="lg:col-span-5 lg:sticky lg:top-24">
             <div className="bg-secondary/30 rounded-3xl p-6 sm:p-8 border border-border/40 backdrop-blur-sm">
               <div className="mb-8 text-center">
-                <h2 className="text-xl font-display font-bold mb-2">미리보기</h2>
+                <h2 className="text-xl font-display font-bold mb-2">Live Preview</h2>
                 <p className="text-sm text-muted-foreground">
-                  인쇄될 카드의 모습입니다.
+                  This is how your card will look when printed
                 </p>
               </div>
 
@@ -64,7 +81,7 @@ export default function Home() {
 
               <div className="mt-8 flex justify-center">
                 <p className="text-xs text-center text-muted-foreground max-w-xs">
-                  팁: 여러 장을 인쇄하여 거실, 침실 또는 사무실에 비치해 보세요.
+                  Tip: Print multiple copies and place them in your guest room, living room, or office.
                 </p>
               </div>
             </div>
@@ -75,7 +92,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t mt-12 py-8 bg-white">
         <div className="max-w-7xl mx-auto px-4 text-center text-sm text-muted-foreground">
-          <p>브라우저에서 안전하게 생성됩니다. 비밀번호는 저장되지 않습니다.</p>
+          <p>Securely generated in your browser. Passwords are not stored.</p>
         </div>
       </footer>
 

@@ -48,13 +48,13 @@ export function WifiForm({ onUpdate, currentConfig }: WifiFormProps) {
       await createMutation.mutateAsync(data);
       // We don't clear the form because user might want to print it
       toast({
-        title: "기록에 저장됨",
-        description: "네트워크 설정이 안전하게 저장되었습니다.",
+        title: "Saved to history",
+        description: "Network configuration has been saved securely.",
       });
     } catch (error) {
       toast({
-        title: "오류",
-        description: error instanceof Error ? error.message : "저장 실패",
+        title: "Error",
+        description: error instanceof Error ? error.message : "Failed to save",
         variant: "destructive",
       });
     }
@@ -77,10 +77,10 @@ export function WifiForm({ onUpdate, currentConfig }: WifiFormProps) {
             name="ssid"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>네트워크 이름 (SSID)</FormLabel>
+                <FormLabel>Network Name (SSID)</FormLabel>
                 <FormControl>
                   <Input 
-                    placeholder="예: My_Home_WiFi" 
+                    placeholder="e.g. Home_WiFi_5G" 
                     className="h-12 bg-background border-2 focus:ring-4 focus:ring-primary/10 transition-all" 
                     {...field} 
                   />
@@ -95,7 +95,7 @@ export function WifiForm({ onUpdate, currentConfig }: WifiFormProps) {
             name="encryption"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>보안 방식</FormLabel>
+                <FormLabel>Encryption Type</FormLabel>
                 <Select 
                   onValueChange={(val) => {
                     field.onChange(val);
@@ -105,13 +105,13 @@ export function WifiForm({ onUpdate, currentConfig }: WifiFormProps) {
                 >
                   <FormControl>
                     <SelectTrigger className="h-12 bg-background border-2">
-                      <SelectValue placeholder="보안 방식을 선택하세요" />
+                      <SelectValue placeholder="Select encryption" />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
                     <SelectItem value="WPA">WPA / WPA2 / WPA3</SelectItem>
                     <SelectItem value="WEP">WEP</SelectItem>
-                    <SelectItem value="nopass">없음 (공개 네트워크)</SelectItem>
+                    <SelectItem value="nopass">None (Open Network)</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -125,12 +125,12 @@ export function WifiForm({ onUpdate, currentConfig }: WifiFormProps) {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>비밀번호</FormLabel>
+                  <FormLabel>Password</FormLabel>
                   <div className="relative">
                     <FormControl>
                       <Input
                         type={showPassword ? "text" : "password"}
-                        placeholder="네트워크 비밀번호를 입력하세요"
+                        placeholder="Enter network password"
                         className="h-12 bg-background border-2 pr-10"
                         {...field}
                       />
@@ -164,9 +164,9 @@ export function WifiForm({ onUpdate, currentConfig }: WifiFormProps) {
                   />
                 </FormControl>
                 <div className="space-y-1 leading-none">
-                  <FormLabel>숨겨진 네트워크</FormLabel>
+                  <FormLabel>Hidden Network</FormLabel>
                   <FormDescription>
-                    SSID를 브로드캐스트하지 않는 네트워크인 경우 선택하세요.
+                    This is a hidden network that doesn't broadcast its SSID.
                   </FormDescription>
                 </div>
               </FormItem>
@@ -183,7 +183,7 @@ export function WifiForm({ onUpdate, currentConfig }: WifiFormProps) {
             onClick={() => form.reset({ ssid: "", password: "", encryption: "WPA", hidden: false })}
           >
             <RotateCcw className="w-5 h-5 mr-2" />
-            초기화
+            Reset
           </Button>
 
           <Button 
@@ -195,7 +195,23 @@ export function WifiForm({ onUpdate, currentConfig }: WifiFormProps) {
             disabled={!form.watch("ssid")}
           >
             <Printer className="w-5 h-5 mr-2" />
-            인쇄하기
+            Print Card
+          </Button>
+
+          <Button 
+            type="submit" 
+            size="lg" 
+            className="flex-[2] h-14 text-base font-semibold shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all"
+            disabled={createMutation.isPending || !form.watch("ssid")}
+          >
+            {createMutation.isPending ? (
+              <>
+                <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                Saving...
+              </>
+            ) : (
+              "Save to History"
+            )}
           </Button>
         </div>
       </form>
