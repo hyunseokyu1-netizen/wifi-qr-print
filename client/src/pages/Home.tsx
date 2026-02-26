@@ -1,6 +1,6 @@
 import { WifiForm } from "@/components/WifiForm";
 import { PrintableCard } from "@/components/PrintableCard";
-import { HistoryList } from "@/components/HistoryList";
+import { AdSense } from "@/components/AdSense";
 import { useState } from "react";
 import type { InsertWifiConfig } from "@shared/schema";
 import { Wifi } from "lucide-react";
@@ -41,6 +41,9 @@ export default function Home() {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+        {/* 상단 광고 영역 */}
+        <AdSense client="ca-pub-YOUR_PUBLISHER_ID" slot="YOUR_AD_SLOT_ID" />
+
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
           
           {/* Left Column: Form & History */}
@@ -81,6 +84,11 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* 하단 광고 영역 */}
+        <div className="mt-12">
+          <AdSense client="ca-pub-YOUR_PUBLISHER_ID" slot="YOUR_AD_SLOT_ID" />
         </div>
       </main>
 
