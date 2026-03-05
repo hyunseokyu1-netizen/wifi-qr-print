@@ -3,6 +3,8 @@ import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { useState, useCallback } from "react";
+import { I18nContext, type Language, getTranslation } from "@/lib/i18n";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 
@@ -16,13 +18,28 @@ function Router() {
 }
 
 function App() {
+  const [lang, setLang] = useState<Language>(() => {
+    const saved = localStorage.getItem("wifi-qr-lang");
+    const valid: Language[] = ["en", "ko", "zh", "de"];
+    return valid.includes(saved as Language) ? (saved as Language) : "en";
+  });
+
+  const handleSetLang = useCallback((newLang: Language) => {
+    setLang(newLang);
+    localStorage.setItem("wifi-qr-lang", newLang);
+  }, []);
+
+  const t = useCallback((key: string) => getTranslation(lang, key), [lang]);
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Router />
-        <Toaster />
-      </TooltipProvider>
-    </QueryClientProvider>
+    <I18nContext.Provider value={{ lang, setLang: handleSetLang, t }}>
+      <QueryClientProvider client={queryClient}>
+        <TooltipProvider>
+          <Router />
+          <Toaster />
+        </TooltipProvider>
+      </QueryClientProvider>
+    </I18nContext.Provider>
   );
 }
 

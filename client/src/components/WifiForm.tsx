@@ -6,10 +6,9 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Loader2, Printer, RotateCcw, Eye, EyeOff } from "lucide-react";
+import { Printer, RotateCcw, Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
-import { useCreateWifiConfig } from "@/hooks/use-wifi";
-import { useToast } from "@/hooks/use-toast";
+import { useI18n } from "@/lib/i18n";
 
 interface WifiFormProps {
   onUpdate: (config: InsertWifiConfig) => void;
@@ -18,8 +17,7 @@ interface WifiFormProps {
 
 export function WifiForm({ onUpdate, currentConfig }: WifiFormProps) {
   const [showPassword, setShowPassword] = useState(false);
-  const { toast } = useToast();
-  const createMutation = useCreateWifiConfig();
+  const { t } = useI18n();
 
   const form = useForm<InsertWifiConfig>({
     resolver: zodResolver(insertWifiConfigSchema),
@@ -32,32 +30,10 @@ export function WifiForm({ onUpdate, currentConfig }: WifiFormProps) {
     mode: "onChange",
   });
 
-  // Sync form changes to parent state for real-time preview
   const handleChange = (data: Partial<InsertWifiConfig>) => {
-    // Merge current values with changes
     const currentValues = form.getValues();
     const newConfig = { ...currentValues, ...data };
-    
-    // Validate minimally before updating preview if possible, but for preview strictly just pass data
-    // We only trigger validation on submit usually, but let's just pass data up
     onUpdate(newConfig);
-  };
-
-  const onSubmit = async (data: InsertWifiConfig) => {
-    try {
-      await createMutation.mutateAsync(data);
-      // We don't clear the form because user might want to print it
-      toast({
-        title: "Saved to history",
-        description: "Network configuration has been saved securely.",
-      });
-    } catch (error) {
-      toast({
-        title: "Error",
-        description: error instanceof Error ? error.message : "Failed to save",
-        variant: "destructive",
-      });
-    }
   };
 
   const handlePrint = () => {
@@ -66,9 +42,9 @@ export function WifiForm({ onUpdate, currentConfig }: WifiFormProps) {
 
   return (
     <Form {...form}>
-      <form 
+      <form
         onChange={() => handleChange(form.getValues())}
-        onSubmit={form.handleSubmit(onSubmit)} 
+        onSubmit={(e) => e.preventDefault()}
         className="space-y-6"
       >
         <div className="space-y-4">
@@ -77,12 +53,13 @@ export function WifiForm({ onUpdate, currentConfig }: WifiFormProps) {
             name="ssid"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Network Name (SSID)</FormLabel>
+                <FormLabel>{t("form.ssid")}</FormLabel>
                 <FormControl>
-                  <Input 
-                    placeholder="e.g. Home_WiFi_5G" 
-                    className="h-12 bg-background border-2 focus:ring-4 focus:ring-primary/10 transition-all" 
-                    {...field} 
+                  <Input
+                    placeholder={t("form.ssidPlaceholder")}
+                    className="h-12 bg-background border-2 focus:ring-4 focus:ring-primary/10 transition-all"
+                    data-testid="input-ssid"
+                    {...field}
                   />
                 </FormControl>
                 <FormMessage />
@@ -95,23 +72,23 @@ export function WifiForm({ onUpdate, currentConfig }: WifiFormProps) {
             name="encryption"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Encryption Type</FormLabel>
-                <Select 
+                <FormLabel>{t("form.encryption")}</FormLabel>
+                <Select
                   onValueChange={(val) => {
                     field.onChange(val);
                     handleChange({ encryption: val });
-                  }} 
+                  }}
                   defaultValue={field.value}
                 >
                   <FormControl>
-                    <SelectTrigger className="h-12 bg-background border-2">
-                      <SelectValue placeholder="Select encryption" />
+                    <SelectTrigger className="h-12 bg-background border-2" data-testid="select-encryption">
+                      <SelectValue placeholder={t("form.encryptionPlaceholder")} />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="WPA">WPA / WPA2 / WPA3</SelectItem>
-                    <SelectItem value="WEP">WEP</SelectItem>
-                    <SelectItem value="nopass">None (Open Network)</SelectItem>
+                    <SelectItem value="WPA" data-testid="option-wpa">{t("form.encryptionWPA")}</SelectItem>
+                    <SelectItem value="WEP" data-testid="option-wep">{t("form.encryptionWEP")}</SelectItem>
+                    <SelectItem value="nopass" data-testid="option-nopass">{t("form.encryptionNone")}</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -125,13 +102,14 @@ export function WifiForm({ onUpdate, currentConfig }: WifiFormProps) {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel>{t("form.password")}</FormLabel>
                   <div className="relative">
                     <FormControl>
                       <Input
                         type={showPassword ? "text" : "password"}
-                        placeholder="Enter network password"
+                        placeholder={t("form.passwordPlaceholder")}
                         className="h-12 bg-background border-2 pr-10"
+                        data-testid="input-password"
                         {...field}
                       />
                     </FormControl>
@@ -139,6 +117,7 @@ export function WifiForm({ onUpdate, currentConfig }: WifiFormProps) {
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
                       className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                      data-testid="button-toggle-password"
                     >
                       {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                     </button>
@@ -161,12 +140,13 @@ export function WifiForm({ onUpdate, currentConfig }: WifiFormProps) {
                       field.onChange(checked);
                       handleChange({ hidden: checked as boolean });
                     }}
+                    data-testid="checkbox-hidden"
                   />
                 </FormControl>
                 <div className="space-y-1 leading-none">
-                  <FormLabel>Hidden Network</FormLabel>
+                  <FormLabel>{t("form.hidden")}</FormLabel>
                   <FormDescription>
-                    This is a hidden network that doesn't broadcast its SSID.
+                    {t("form.hiddenDesc")}
                   </FormDescription>
                 </div>
               </FormItem>
@@ -175,43 +155,31 @@ export function WifiForm({ onUpdate, currentConfig }: WifiFormProps) {
         </div>
 
         <div className="flex flex-col sm:flex-row gap-4 pt-4">
-          <Button 
-            type="button" 
-            variant="outline" 
-            size="lg" 
+          <Button
+            type="button"
+            variant="outline"
+            size="lg"
             className="flex-1 h-14 text-base font-semibold border-2 hover:bg-secondary/50"
-            onClick={() => form.reset({ ssid: "", password: "", encryption: "WPA", hidden: false })}
+            onClick={() => {
+              form.reset({ ssid: "", password: "", encryption: "WPA", hidden: false });
+              onUpdate({ ssid: "", password: "", encryption: "WPA", hidden: false });
+            }}
+            data-testid="button-reset"
           >
             <RotateCcw className="w-5 h-5 mr-2" />
-            Reset
+            {t("form.reset")}
           </Button>
 
-          <Button 
-            type="button" 
-            variant="secondary" 
-            size="lg" 
-            className="flex-1 h-14 text-base font-semibold bg-indigo-50 text-primary hover:bg-indigo-100 hover:text-indigo-700"
+          <Button
+            type="button"
+            size="lg"
+            className="flex-[2] h-14 text-base font-semibold shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all"
             onClick={handlePrint}
             disabled={!form.watch("ssid")}
+            data-testid="button-print"
           >
             <Printer className="w-5 h-5 mr-2" />
-            Print Card
-          </Button>
-
-          <Button 
-            type="submit" 
-            size="lg" 
-            className="flex-[2] h-14 text-base font-semibold shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all"
-            disabled={createMutation.isPending || !form.watch("ssid")}
-          >
-            {createMutation.isPending ? (
-              <>
-                <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                Saving...
-              </>
-            ) : (
-              "Save to History"
-            )}
+            {t("form.print")}
           </Button>
         </div>
       </form>

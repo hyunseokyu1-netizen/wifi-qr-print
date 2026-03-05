@@ -1,6 +1,7 @@
 import { useWifiConfigs } from "@/hooks/use-wifi";
 import { format } from "date-fns";
 import { Wifi, Clock } from "lucide-react";
+import { useI18n } from "@/lib/i18n";
 
 interface HistoryListProps {
   onSelect: (ssid: string, encryption: string, hidden: boolean) => void;
@@ -8,6 +9,7 @@ interface HistoryListProps {
 
 export function HistoryList({ onSelect }: HistoryListProps) {
   const { data: history, isLoading } = useWifiConfigs();
+  const { t } = useI18n();
 
   if (isLoading) {
     return (
@@ -21,11 +23,11 @@ export function HistoryList({ onSelect }: HistoryListProps) {
 
   if (!history || history.length === 0) {
     return (
-      <div className="text-center py-12 px-4 rounded-2xl border-2 border-dashed border-muted-foreground/20">
+      <div className="text-center py-12 px-4 rounded-2xl border-2 border-dashed border-muted-foreground/20" data-testid="text-history-empty">
         <Wifi className="w-12 h-12 mx-auto text-muted-foreground/40 mb-3" />
-        <h3 className="font-semibold text-muted-foreground">No history yet</h3>
+        <h3 className="font-semibold text-muted-foreground">{t("history.empty")}</h3>
         <p className="text-sm text-muted-foreground/60 mt-1">
-          Generated WiFi codes will appear here.
+          {t("history.emptyDesc")}
         </p>
       </div>
     );
@@ -38,6 +40,7 @@ export function HistoryList({ onSelect }: HistoryListProps) {
           key={item.id}
           onClick={() => onSelect(item.ssid, item.encryption, item.hidden)}
           className="w-full text-left bg-card hover:bg-accent/50 p-4 rounded-xl border border-border/50 hover:border-primary/20 transition-all duration-200 group"
+          data-testid={`button-history-${item.id}`}
         >
           <div className="flex justify-between items-start mb-1">
             <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors">
@@ -53,7 +56,7 @@ export function HistoryList({ onSelect }: HistoryListProps) {
               {item.createdAt && format(new Date(item.createdAt), "MMM d, yyyy")}
             </span>
             {item.hidden && (
-              <span className="text-orange-500/80 font-medium">Hidden Network</span>
+              <span className="text-orange-500/80 font-medium">{t("history.hidden")}</span>
             )}
           </div>
         </button>
