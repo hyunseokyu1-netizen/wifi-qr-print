@@ -40,7 +40,7 @@ export function PrintableCard({ config }: PrintableCardProps) {
       <div className="relative z-10 bg-white p-3 rounded-2xl shadow-sm border border-border/40 print:p-2">
         <QRCodeSVG
           value={qrString}
-          size={150}
+          size={250}
           level="Q"
           includeMargin={true}
           className="rounded-lg print:w-[130px] print:h-[130px]"
