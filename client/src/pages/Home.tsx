@@ -34,7 +34,12 @@ export default function Home() {
 
       {/* Top banner ad — below header */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 print:hidden">
-        <AdBanner slot="1234567890" format="horizontal" className="min-h-[90px] bg-muted/30 rounded-xl" />
+        <AdBanner
+          slot="9601998432"
+          format="fluid"
+          layoutKey="-6s+ed+2g-1n-4q"
+          className="min-h-[90px]"
+        />
       </div>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 print:p-0 print:max-w-none">
