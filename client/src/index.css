@@ -86,8 +86,8 @@
 /* Print Specific Styles */
 @media print {
   @page {
-    size: auto;
-    margin: 0;
+    size: A5 portrait;
+    margin: 8mm;
   }
 
   body {
@@ -96,27 +96,9 @@
     print-color-adjust: exact;
   }
 
-  /* Hide everything by default */
-  body > * {
-    display: none !important;
-  }
-
-  /* Only show the print container */
-  #print-area {
-    display: flex !important;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
-    background: white;
-  }
-  
-  /* Reset shadows for print */
-  .shadow-xl, .shadow-lg, .shadow-md {
+  /* Reset shadows for print — keep a subtle border instead */
+  .shadow-xl, .shadow-lg, .shadow-md, .shadow-sm {
     box-shadow: none !important;
-    border: 2px solid #e2e8f0; /* Add a visible border for print */
+    border: 1.5px solid #e2e8f0 !important;
   }
 }

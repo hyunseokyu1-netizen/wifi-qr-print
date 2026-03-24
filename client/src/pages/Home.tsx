@@ -1,6 +1,5 @@
 import { WifiForm } from "@/components/WifiForm";
 import { PrintableCard } from "@/components/PrintableCard";
-import { HistoryList } from "@/components/HistoryList";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { useState } from "react";
 import type { InsertWifiConfig } from "@shared/schema";
@@ -15,16 +14,6 @@ export default function Home() {
     encryption: "WPA",
     hidden: false,
   });
-
-  const handleHistorySelect = (ssid: string, encryption: string, hidden: boolean) => {
-    setConfig((prev) => ({
-      ...prev,
-      ssid,
-      encryption,
-      hidden,
-      password: "",
-    }));
-  };
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary/20">
@@ -42,8 +31,8 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 print:p-0 print:max-w-none">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start print:block">
           <div className="lg:col-span-7 space-y-8 print:hidden">
             <section className="bg-card rounded-3xl p-6 sm:p-8 shadow-sm border border-border/60">
               <div className="mb-6">
@@ -52,20 +41,14 @@ export default function Home() {
                   {t("header.networkDetailsDesc")}
                 </p>
               </div>
-
               <WifiForm
                 onUpdate={setConfig}
                 currentConfig={config}
               />
             </section>
-
-            <section>
-              <h3 className="text-lg font-bold font-display mb-4 px-2">{t("history.title")}</h3>
-              <HistoryList onSelect={handleHistorySelect} />
-            </section>
           </div>
 
-          <div className="lg:col-span-5 lg:sticky lg:top-24">
+          <div className="lg:col-span-5 lg:sticky lg:top-24 print:flex print:items-center print:justify-center print:min-h-screen">
             <div className="bg-secondary/30 rounded-3xl p-6 sm:p-8 border border-border/40 backdrop-blur-sm print:bg-transparent print:border-0 print:p-0 print:shadow-none">
               <div className="mb-8 text-center print:hidden">
                 <h2 className="text-xl font-display font-bold mb-2">{t("preview.title")}</h2>
@@ -93,12 +76,6 @@ export default function Home() {
           <p>{t("footer.text")}</p>
         </div>
       </footer>
-
-      <div id="print-area" className="hidden">
-        <div className="transform scale-150 origin-center">
-          <PrintableCard config={config} />
-        </div>
-      </div>
     </div>
   );
 }
