@@ -20,7 +20,7 @@ export function PrintableCard({ config }: PrintableCardProps) {
 
   return (
     <div
-      className="bg-white rounded-3xl p-6 shadow-xl border border-border/50 max-w-xs w-full mx-auto flex flex-col items-center gap-4 relative overflow-hidden group hover:shadow-2xl transition-all duration-300 print:overflow-visible print:shadow-none print:max-w-[260px] print:p-5 print:gap-3"
+      className="bg-white rounded-3xl p-6 shadow-xl border border-border/50 max-w-xs w-full mx-auto flex flex-col items-center gap-4 relative overflow-hidden group hover:shadow-2xl transition-all duration-300 print:overflow-visible print:shadow-none print:max-w-sm print:p-8 print:gap-5"
       data-testid="printable-card"
     >
       <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-primary/10 to-transparent rounded-t-3xl" />
@@ -43,7 +43,7 @@ export function PrintableCard({ config }: PrintableCardProps) {
           size={250}
           level="Q"
           includeMargin={true}
-          className="rounded-lg print:w-[130px] print:h-[130px]"
+          className="rounded-lg"
           fgColor="hsl(var(--foreground))"
         />
       </div>

@@ -86,8 +86,8 @@
 /* Print Specific Styles */
 @media print {
   @page {
-    size: A5 portrait;
-    margin: 12mm;
+    size: A4 portrait;
+    margin: 15mm;
   }
 
   body {
