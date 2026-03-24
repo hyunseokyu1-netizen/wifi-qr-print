@@ -32,16 +32,6 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Top banner ad — below header */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 print:hidden">
-        <AdBanner
-          slot="9601998432"
-          format="fluid"
-          layoutKey="-6s+ed+2g-1n-4q"
-          className="min-h-[90px]"
-        />
-      </div>
-
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 print:p-0 print:max-w-none">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start print:block">
           <div className="lg:col-span-7 space-y-8 print:hidden">
@@ -57,7 +47,6 @@ export default function Home() {
                 currentConfig={config}
               />
             </section>
-
           </div>
 
           <div className="lg:col-span-5 lg:sticky lg:top-24 print:flex print:items-center print:justify-center print:min-h-screen">
@@ -84,6 +73,15 @@ export default function Home() {
       </main>
 
       <footer className="border-t mt-12 py-8 bg-white print:hidden">
+        {/* Bottom banner ad — above footer text */}
+        <div className="max-w-7xl mx-auto px-4 mb-6">
+          <AdBanner
+            slot="9601998432"
+            format="fluid"
+            layoutKey="-6s+ed+2g-1n-4q"
+            className="min-h-[90px]"
+          />
+        </div>
         <div className="max-w-7xl mx-auto px-4 text-center text-sm text-muted-foreground">
           <p>{t("footer.text")}</p>
         </div>
