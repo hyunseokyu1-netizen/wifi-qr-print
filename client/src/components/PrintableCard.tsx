@@ -19,7 +19,7 @@ export function PrintableCard({ config }: PrintableCardProps) {
   const qrString = `WIFI:S:${ssid};T:${encryption};P:${password};H:${hidden};;`;
 
   return (
-    <div className="bg-white rounded-3xl p-8 shadow-xl border border-border/50 max-w-sm w-full mx-auto aspect-[3/4] flex flex-col items-center justify-between relative overflow-hidden group hover:shadow-2xl transition-all duration-300" data-testid="printable-card">
+    <div className="bg-white rounded-3xl p-8 shadow-xl border border-border/50 max-w-sm w-full mx-auto aspect-[3/4] flex flex-col items-center justify-between relative overflow-hidden group hover:shadow-2xl transition-all duration-300 print:overflow-visible print:aspect-auto print:h-auto print:shadow-none print:justify-start print:gap-6" data-testid="printable-card">
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-primary/10 to-transparent rounded-t-3xl" />
 
       <div className="relative z-10 flex flex-col items-center w-full pt-4">

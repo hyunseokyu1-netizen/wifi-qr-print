@@ -49,7 +49,7 @@ export default function Home() {
             </section>
           </div>
 
-          <div className="lg:col-span-5 lg:sticky lg:top-24 print:flex print:items-center print:justify-center print:min-h-screen">
+          <div className="lg:col-span-5 lg:sticky lg:top-24 print:flex print:justify-center print:pt-8">
             <div className="bg-secondary/30 rounded-3xl p-6 sm:p-8 border border-border/40 backdrop-blur-sm print:bg-transparent print:border-0 print:p-0 print:shadow-none">
               <div className="mb-8 text-center print:hidden">
                 <h2 className="text-xl font-display font-bold mb-2">{t("preview.title")}</h2>
