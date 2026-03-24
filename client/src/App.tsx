@@ -21,7 +21,7 @@ function App() {
   const [lang, setLang] = useState<Language>(() => {
     const saved = localStorage.getItem("wifi-qr-lang");
     const valid: Language[] = ["en", "ko", "zh", "de"];
-    return valid.includes(saved as Language) ? (saved as Language) : "en";
+    return valid.includes(saved as Language) ? (saved as Language) : "ko";
   });
 
   const handleSetLang = useCallback((newLang: Language) => {
