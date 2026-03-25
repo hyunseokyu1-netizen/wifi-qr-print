@@ -59,13 +59,9 @@ export function WifiForm({ onUpdate, currentConfig }: WifiFormProps) {
                     placeholder={t("form.ssidPlaceholder")}
                     className="h-12 bg-background border-2 focus:ring-4 focus:ring-primary/10 transition-all"
                     data-testid="input-ssid"
-                    title={t("form.ssidTooltip")}
                     {...field}
                   />
                 </FormControl>
-                <FormDescription className="text-xs text-amber-600 dark:text-amber-400 flex items-center gap-1">
-                  <span>⚠</span> {t("form.ssidTooltip")}
-                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -186,10 +182,6 @@ export function WifiForm({ onUpdate, currentConfig }: WifiFormProps) {
             {t("form.print")}
           </Button>
         </div>
-
-        <p className="text-xs text-center text-muted-foreground bg-muted/50 rounded-lg px-3 py-2 border border-border/50" data-testid="text-print-tip">
-          💡 {t("form.printTip")}
-        </p>
       </form>
     </Form>
   );
