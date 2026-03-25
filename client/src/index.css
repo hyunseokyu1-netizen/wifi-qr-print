@@ -104,48 +104,39 @@
     print-color-adjust: exact;
   }
 
-  /* Reset shadows for print */
+  /* Hide everything except the card */
+  body > div > header,
+  body > div > footer,
+  body > div > main > div > div:first-child {
+    display: none !important;
+  }
+
+  /* Reset shadows */
   .shadow-xl, .shadow-lg, .shadow-md, .shadow-sm {
     box-shadow: none !important;
   }
 
-  /* Force the main content area to be full-width with no padding */
-  main {
-    max-width: 100% !important;
-    padding: 0 !important;
-    margin: 0 !important;
-  }
-
-  /* Make the grid a full-width block */
-  main > div {
-    display: block !important;
-    width: 100% !important;
-    margin: 0 !important;
-    gap: 0 !important;
-  }
-
-  /* Center the print column — full page width, vertically centered */
+  /* Place the card container in the exact center of the page */
   #print-column {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    width: 100% !important;
-    min-height: calc(297mm - 30mm) !important;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    margin: 0 !important;
     padding: 0 !important;
-    position: static !important;
+    width: auto !important;
+    display: block !important;
   }
 
-  /* The inner wrapper inside print-column */
+  /* Strip wrapper styling */
   #print-column > div {
     background: transparent !important;
     border: none !important;
     padding: 0 !important;
     box-shadow: none !important;
-    display: flex !important;
-    justify-content: center !important;
   }
 
-  /* Prevent the card from being split across pages */
+  /* Card: no overflow, auto height, keep border */
   [data-testid="printable-card"] {
     page-break-inside: avoid;
     break-inside: avoid;
