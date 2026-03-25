@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Printer, RotateCcw, Eye, EyeOff } from "lucide-react";
+import { Printer, RotateCcw, Eye, EyeOff, Info } from "lucide-react";
 import { useState } from "react";
 import { useI18n } from "@/lib/i18n";
 
@@ -62,6 +62,10 @@ export function WifiForm({ onUpdate, currentConfig }: WifiFormProps) {
                     {...field}
                   />
                 </FormControl>
+                <FormDescription className="flex items-start gap-1.5 text-xs text-muted-foreground">
+                  <Info className="w-3.5 h-3.5 mt-0.5 shrink-0 text-primary/60" />
+                  {t("form.ssidNote")}
+                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -154,7 +158,12 @@ export function WifiForm({ onUpdate, currentConfig }: WifiFormProps) {
           />
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-4 pt-4">
+        <div className="flex items-start gap-1.5 text-xs text-amber-600 bg-amber-50 border border-amber-200 rounded-xl px-3 py-2.5">
+          <Info className="w-3.5 h-3.5 mt-0.5 shrink-0" />
+          <span>{t("form.printNote")}</span>
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-4">
           <Button
             type="button"
             variant="outline"
