@@ -127,14 +127,13 @@
     gap: 0 !important;
   }
 
-  /* Center the print column — full page, card centered vertically */
+  /* Center the print column horizontally, card starts from top */
   #print-column {
     display: flex !important;
     justify-content: center !important;
-    align-items: center !important;
+    align-items: flex-start !important;
     width: 100% !important;
-    min-height: 100vh !important;
-    padding: 0 !important;
+    padding: 20mm 0 0 0 !important;
     position: static !important;
   }
 
