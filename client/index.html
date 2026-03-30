@@ -3,6 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <script>
+      (function() {
+        var saved = localStorage.getItem("wifi-qr-lang");
+        var valid = ["en", "ko", "zh", "de"];
+        var lang;
+        if (valid.indexOf(saved) !== -1) {
+          lang = saved;
+        } else {
+          var b = navigator.language.toLowerCase();
+          if (b.startsWith("ko")) lang = "ko";
+          else if (b.startsWith("zh")) lang = "zh";
+          else if (b.startsWith("de")) lang = "de";
+          else lang = "en";
+        }
+        document.documentElement.lang = lang;
+      })();
+    </script>
 
     <!-- Primary Meta Tags -->
     <title>WiFi QR Print – Free WiFi QR Code Generator</title>
