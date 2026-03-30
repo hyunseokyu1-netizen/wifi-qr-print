@@ -17,12 +17,20 @@ function Router() {
   );
 }
 
+function detectLanguage(): Language {
+  const saved = localStorage.getItem("wifi-qr-lang");
+  const valid: Language[] = ["en", "ko", "zh", "de"];
+  if (valid.includes(saved as Language)) return saved as Language;
+
+  const browserLang = navigator.language.toLowerCase();
+  if (browserLang.startsWith("ko")) return "ko";
+  if (browserLang.startsWith("zh")) return "zh";
+  if (browserLang.startsWith("de")) return "de";
+  return "en";
+}
+
 function App() {
-  const [lang, setLang] = useState<Language>(() => {
-    const saved = localStorage.getItem("wifi-qr-lang");
-    const valid: Language[] = ["en", "ko", "zh", "de"];
-    return valid.includes(saved as Language) ? (saved as Language) : "ko";
-  });
+  const [lang, setLang] = useState<Language>(detectLanguage);
 
   const handleSetLang = useCallback((newLang: Language) => {
     setLang(newLang);
