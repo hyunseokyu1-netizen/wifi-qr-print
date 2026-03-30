@@ -5,11 +5,13 @@ import { useState, useCallback } from "react";
 import { I18nContext, type Language, getTranslation } from "@/lib/i18n";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
+import Privacy from "@/pages/Privacy";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/privacy" component={Privacy} />
       <Route component={NotFound} />
     </Switch>
   );
