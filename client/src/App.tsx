@@ -2,7 +2,7 @@ import { Switch, Route } from "wouter";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Analytics } from "@vercel/analytics/react";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { I18nContext, type Language, getTranslation } from "@/lib/i18n";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
@@ -32,6 +32,10 @@ function detectLanguage(): Language {
 
 function App() {
   const [lang, setLang] = useState<Language>(detectLanguage);
+
+  useEffect(() => {
+    document.documentElement.lang = lang;
+  }, [lang]);
 
   const handleSetLang = useCallback((newLang: Language) => {
     setLang(newLang);
