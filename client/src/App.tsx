@@ -1,6 +1,7 @@
 import { Switch, Route } from "wouter";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { Analytics } from "@vercel/analytics/react";
 import { useState, useCallback } from "react";
 import { I18nContext, type Language, getTranslation } from "@/lib/i18n";
 import NotFound from "@/pages/not-found";
@@ -44,6 +45,7 @@ function App() {
       <TooltipProvider>
         <Router />
         <Toaster />
+        <Analytics />
       </TooltipProvider>
     </I18nContext.Provider>
   );
