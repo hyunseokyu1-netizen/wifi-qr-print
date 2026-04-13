@@ -68,8 +68,7 @@ export default function Home() {
 
   return (
     <>
-      <Helmet>
-        <html lang={lang} />
+      <Helmet htmlAttributes={{ lang }}>
         <title>{pageTitles[lang] ?? pageTitles.en}</title>
         <meta name="description" content={pageDescs[lang] ?? pageDescs.en} />
         <link rel="canonical" href="https://wi-fi-qr.xyz/" />
