@@ -2,11 +2,19 @@ import { Wifi } from "lucide-react";
 import { Link } from "wouter";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { useI18n } from "@/lib/i18n";
+import { Helmet } from "react-helmet-async";
 
 export default function Privacy() {
   const { t } = useI18n();
 
   return (
+    <>
+      <Helmet>
+        <title>Privacy Policy – WiFi QR Print</title>
+        <meta name="description" content="Privacy policy for WiFi QR Print. Your WiFi passwords are never stored or sent to any server — all processing happens in your browser." />
+        <meta name="robots" content="noindex, follow" />
+        <link rel="canonical" href="https://wi-fi-qr.xyz/privacy" />
+      </Helmet>
     <div className="min-h-screen bg-background text-foreground font-sans">
       <header className="bg-white/80 backdrop-blur-md border-b sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -117,5 +125,6 @@ export default function Privacy() {
         </div>
       </footer>
     </div>
+    </>
   );
 }

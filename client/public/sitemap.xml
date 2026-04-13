@@ -3,7 +3,7 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://wi-fi-qr.xyz/</loc>
-    <lastmod>2026-03-28</lastmod>
+    <lastmod>2026-04-13</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://wi-fi-qr.xyz/"/>
@@ -11,5 +11,11 @@
     <xhtml:link rel="alternate" hreflang="zh" href="https://wi-fi-qr.xyz/"/>
     <xhtml:link rel="alternate" hreflang="de" href="https://wi-fi-qr.xyz/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://wi-fi-qr.xyz/"/>
+  </url>
+  <url>
+    <loc>https://wi-fi-qr.xyz/privacy</loc>
+    <lastmod>2026-04-13</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
   </url>
 </urlset>

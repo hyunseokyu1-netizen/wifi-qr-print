@@ -3,6 +3,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Analytics } from "@vercel/analytics/react";
 import { useState, useCallback, useEffect } from "react";
+import { HelmetProvider } from "react-helmet-async";
 import { I18nContext, type Language, getTranslation } from "@/lib/i18n";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
@@ -45,13 +46,15 @@ function App() {
   const t = useCallback((key: string) => getTranslation(lang, key), [lang]);
 
   return (
-    <I18nContext.Provider value={{ lang, setLang: handleSetLang, t }}>
-      <TooltipProvider>
-        <Router />
-        <Toaster />
-        <Analytics />
-      </TooltipProvider>
-    </I18nContext.Provider>
+    <HelmetProvider>
+      <I18nContext.Provider value={{ lang, setLang: handleSetLang, t }}>
+        <TooltipProvider>
+          <Router />
+          <Toaster />
+          <Analytics />
+        </TooltipProvider>
+      </I18nContext.Provider>
+    </HelmetProvider>
   );
 }
 

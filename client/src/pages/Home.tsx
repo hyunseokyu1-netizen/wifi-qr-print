@@ -7,6 +7,7 @@ import type { InsertWifiConfig } from "@shared/schema";
 import { Wifi, Printer, Shield, WifiOff, ChevronDown, ChevronUp } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { Link } from "wouter";
+import { Helmet } from "react-helmet-async";
 
 function FaqItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false);
@@ -52,7 +53,27 @@ export default function Home() {
     { q: t("faq.q5"), a: t("faq.a5") },
   ];
 
+  const pageTitles: Record<string, string> = {
+    en: "WiFi QR Print – Free WiFi QR Code Generator",
+    ko: "WiFi QR 프린트 – 무료 WiFi QR 코드 생성기",
+    zh: "WiFi 二维码打印 – 免费WiFi二维码生成器",
+    de: "WiFi QR Druck – Kostenloser WLAN QR-Code Generator",
+  };
+  const pageDescs: Record<string, string> = {
+    en: "Generate a printable WiFi QR code in seconds. Guests scan and connect instantly — no typing needed. Free, secure, and works offline.",
+    ko: "몇 초 만에 인쇄 가능한 WiFi QR 코드를 생성하세요. 손님이 스캔하면 바로 연결됩니다. 무료, 안전, 오프라인 지원.",
+    zh: "几秒钟内生成可打印的WiFi二维码。访客扫描即可连接——无需输入密码。免费、安全、支持离线使用。",
+    de: "Erstellen Sie in Sekunden einen druckbaren WLAN-QR-Code. Gäste scannen und verbinden sich sofort — kein Tippen nötig. Kostenlos, sicher, offline nutzbar.",
+  };
+
   return (
+    <>
+      <Helmet>
+        <html lang={lang} />
+        <title>{pageTitles[lang] ?? pageTitles.en}</title>
+        <meta name="description" content={pageDescs[lang] ?? pageDescs.en} />
+        <link rel="canonical" href="https://wi-fi-qr.xyz/" />
+      </Helmet>
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary/20">
       <header className="bg-white/80 backdrop-blur-md border-b sticky top-0 z-50 print:hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -69,6 +90,16 @@ export default function Home() {
       </header>
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 print:p-0 print:max-w-none">
+        {/* Hero intro for SEO */}
+        <div className="text-center mb-10 print:hidden">
+          <p className="text-3xl sm:text-4xl font-display font-bold mb-3 leading-tight">
+            {t("hero.headline")}
+          </p>
+          <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
+            {t("hero.subheadline")}
+          </p>
+        </div>
+
         {/* QR Generator */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start print:block">
           <div className="lg:col-span-7 space-y-8 print:hidden">
@@ -150,5 +181,6 @@ export default function Home() {
         </div>
       </footer>
     </div>
+    </>
   );
 }

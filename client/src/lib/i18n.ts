@@ -12,6 +12,8 @@ export const LANGUAGES: { code: Language; label: string; flag: string }[] = [
 const translations: Record<Language, Record<string, string>> = {
   en: {
     "app.title": "WiFi QR Print",
+    "hero.headline": "Free WiFi QR Code Generator",
+    "hero.subheadline": "Create a printable WiFi QR code card in seconds. Guests scan once and connect instantly — no typing needed. Free, private, works offline.",
     "header.networkDetails": "Network Details",
     "header.networkDetailsDesc": "Enter your Wi-Fi credentials to generate a QR code. Your password is never saved.",
     "form.ssid": "Network Name (SSID)",
@@ -66,6 +68,8 @@ const translations: Record<Language, Record<string, string>> = {
   },
   ko: {
     "app.title": "WiFi QR 프린트",
+    "hero.headline": "무료 WiFi QR 코드 생성기",
+    "hero.subheadline": "몇 초 만에 인쇄 가능한 WiFi QR 코드 카드를 만드세요. 손님이 한 번 스캔하면 바로 연결됩니다 — 비밀번호 입력 불필요. 무료, 안전, 오프라인 지원.",
     "header.networkDetails": "네트워크 정보",
     "header.networkDetailsDesc": "Wi-Fi 인증 정보를 입력하여 QR 코드를 생성하세요. 비밀번호는 저장되지 않습니다.",
     "form.ssid": "네트워크 이름 (SSID)",
@@ -120,6 +124,8 @@ const translations: Record<Language, Record<string, string>> = {
   },
   zh: {
     "app.title": "WiFi 二维码打印",
+    "hero.headline": "免费WiFi二维码生成器",
+    "hero.subheadline": "几秒钟内创建可打印的WiFi二维码卡片。访客扫描一次即可连接，无需输入密码。免费、安全、支持离线使用。",
     "header.networkDetails": "网络详情",
     "header.networkDetailsDesc": "输入您的 Wi-Fi 凭据以生成二维码。您的密码不会被保存。",
     "form.ssid": "网络名称 (SSID)",
@@ -174,6 +180,8 @@ const translations: Record<Language, Record<string, string>> = {
   },
   de: {
     "app.title": "WiFi QR Druck",
+    "hero.headline": "Kostenloser WiFi QR-Code Generator",
+    "hero.subheadline": "Erstellen Sie in Sekunden eine druckbare WiFi QR-Code-Karte. Gäste scannen einmal und verbinden sich sofort — kein Tippen erforderlich. Kostenlos, sicher, offline nutzbar.",
     "header.networkDetails": "Netzwerk-Details",
     "header.networkDetailsDesc": "Geben Sie Ihre WLAN-Zugangsdaten ein, um einen QR-Code zu erstellen. Ihr Passwort wird nicht gespeichert.",
     "form.ssid": "Netzwerkname (SSID)",
