@@ -30,7 +30,7 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
 }
 
 export default function Home() {
-  const { t } = useI18n();
+  const { t, lang } = useI18n();
   const [config, setConfig] = useState<InsertWifiConfig>({
     ssid: "",
     password: "",
