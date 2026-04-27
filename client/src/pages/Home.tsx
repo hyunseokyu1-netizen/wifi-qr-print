@@ -194,6 +194,11 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Ad Banner — Use Cases 아래 */}
+        <div className="mt-12 print:hidden">
+          <AdBanner slot="4073859996" format="auto" className="min-h-[90px]" />
+        </div>
+
         {/* Security Tips */}
         <section className="mt-20 print:hidden">
           <div className="text-center mb-10">
