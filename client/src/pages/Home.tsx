@@ -4,7 +4,7 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { AdBanner } from "@/components/AdBanner";
 import { useState } from "react";
 import type { InsertWifiConfig } from "@shared/schema";
-import { Wifi, Printer, Shield, WifiOff, ChevronDown, ChevronUp } from "lucide-react";
+import { Wifi, Printer, Shield, WifiOff, ChevronDown, ChevronUp, Building2, Coffee, Home as HomeIcon, Users, Lock, RefreshCw } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { Link } from "wouter";
 import { Helmet } from "react-helmet-async";
@@ -51,6 +51,30 @@ export default function Home() {
     { q: t("faq.q3"), a: t("faq.a3") },
     { q: t("faq.q4"), a: t("faq.a4") },
     { q: t("faq.q5"), a: t("faq.a5") },
+    { q: t("faq.q6"), a: t("faq.a6") },
+    { q: t("faq.q7"), a: t("faq.a7") },
+    { q: t("faq.q8"), a: t("faq.a8") },
+    { q: t("faq.q9"), a: t("faq.a9") },
+    { q: t("faq.q10"), a: t("faq.a10") },
+    { q: t("faq.q11"), a: t("faq.a11") },
+    { q: t("faq.q12"), a: t("faq.a12") },
+    { q: t("faq.q13"), a: t("faq.a13") },
+    { q: t("faq.q14"), a: t("faq.a14") },
+    { q: t("faq.q15"), a: t("faq.a15") },
+  ];
+
+  const usecases = [
+    { icon: <Building2 className="w-6 h-6" />, title: t("usecases.hotel.title"), desc: t("usecases.hotel.desc") },
+    { icon: <Coffee className="w-6 h-6" />, title: t("usecases.cafe.title"), desc: t("usecases.cafe.desc") },
+    { icon: <Users className="w-6 h-6" />, title: t("usecases.office.title"), desc: t("usecases.office.desc") },
+    { icon: <HomeIcon className="w-6 h-6" />, title: t("usecases.home.title"), desc: t("usecases.home.desc") },
+  ];
+
+  const tips = [
+    { icon: <Shield className="w-6 h-6" />, title: t("tips.t1.title"), desc: t("tips.t1.desc") },
+    { icon: <Users className="w-6 h-6" />, title: t("tips.t2.title"), desc: t("tips.t2.desc") },
+    { icon: <Lock className="w-6 h-6" />, title: t("tips.t3.title"), desc: t("tips.t3.desc") },
+    { icon: <RefreshCw className="w-6 h-6" />, title: t("tips.t4.title"), desc: t("tips.t4.desc") },
   ];
 
   const pageTitles: Record<string, string> = {
@@ -151,13 +175,48 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Ad Banner */}
-        <div className="mt-12 print:hidden">
-          <AdBanner slot="9601998432" format="fluid" layoutKey="-6s+ed+2g-1n-4q" className="min-h-[90px]" />
-        </div>
+        {/* Use Cases */}
+        <section className="mt-20 print:hidden">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-display font-bold mb-3">{t("usecases.title")}</h2>
+            <p className="text-muted-foreground">{t("usecases.subtitle")}</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {usecases.map((uc, i) => (
+              <div key={i} className="bg-card rounded-2xl p-6 border border-border/60 shadow-sm flex flex-col gap-4">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                  {uc.icon}
+                </div>
+                <h3 className="font-display font-bold text-lg leading-tight">{uc.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{uc.desc}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Security Tips */}
+        <section className="mt-20 print:hidden">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-display font-bold mb-3">{t("tips.title")}</h2>
+            <p className="text-muted-foreground">{t("tips.subtitle")}</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {tips.map((tip, i) => (
+              <div key={i} className="bg-card rounded-2xl p-6 border border-border/60 shadow-sm flex gap-4">
+                <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0 mt-0.5">
+                  {tip.icon}
+                </div>
+                <div>
+                  <h3 className="font-display font-bold text-base mb-2">{tip.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{tip.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* FAQ */}
-        <section className="mt-16 print:hidden">
+        <section className="mt-20 print:hidden">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-display font-bold mb-3">{t("faq.title")}</h2>
           </div>
@@ -167,16 +226,27 @@ export default function Home() {
             ))}
           </div>
         </section>
+
+        {/* Ad Banner — after substantial content */}
+        <div className="mt-12 print:hidden">
+          <AdBanner slot="9601998432" format="auto" className="min-h-[90px]" />
+        </div>
       </main>
 
       <footer className="border-t mt-16 py-8 bg-white print:hidden">
         <div className="max-w-7xl mx-auto px-4 text-center space-y-2 text-sm text-muted-foreground">
           <p>{t("footer.text")}</p>
-          <p>
+          <div className="flex items-center justify-center gap-4 flex-wrap">
+            <Link href="/guide" className="underline underline-offset-2 hover:text-foreground transition-colors">
+              {t("footer.guide")}
+            </Link>
+            <Link href="/about" className="underline underline-offset-2 hover:text-foreground transition-colors">
+              {t("footer.about")}
+            </Link>
             <Link href="/privacy" className="underline underline-offset-2 hover:text-foreground transition-colors">
               {t("footer.privacy")}
             </Link>
-          </p>
+          </div>
         </div>
       </footer>
     </div>

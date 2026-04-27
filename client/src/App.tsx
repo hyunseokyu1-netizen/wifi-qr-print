@@ -8,11 +8,15 @@ import { I18nContext, type Language, getTranslation } from "@/lib/i18n";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import Privacy from "@/pages/Privacy";
+import Guide from "@/pages/Guide";
+import About from "@/pages/About";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/guide" component={Guide} />
+      <Route path="/about" component={About} />
       <Route path="/privacy" component={Privacy} />
       <Route component={NotFound} />
     </Switch>
