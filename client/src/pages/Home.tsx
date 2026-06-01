@@ -331,6 +331,9 @@ export default function Home() {
             <Link href="/about" className="underline underline-offset-2 hover:text-foreground transition-colors">
               {t("footer.about")}
             </Link>
+            <Link href="/contact" className="underline underline-offset-2 hover:text-foreground transition-colors">
+              Contact
+            </Link>
             <Link href="/privacy" className="underline underline-offset-2 hover:text-foreground transition-colors">
               {t("footer.privacy")}
             </Link>

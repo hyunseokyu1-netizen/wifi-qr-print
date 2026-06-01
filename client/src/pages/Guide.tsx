@@ -262,11 +262,14 @@ export default function Guide() {
               <Link href="/faq" className="underline underline-offset-2 hover:text-foreground transition-colors">
                 FAQ
               </Link>
-              <Link href="/privacy" className="underline underline-offset-2 hover:text-foreground transition-colors">
-                {t("footer.privacy")}
-              </Link>
               <Link href="/about" className="underline underline-offset-2 hover:text-foreground transition-colors">
                 {t("footer.about")}
+              </Link>
+              <Link href="/contact" className="underline underline-offset-2 hover:text-foreground transition-colors">
+                Contact
+              </Link>
+              <Link href="/privacy" className="underline underline-offset-2 hover:text-foreground transition-colors">
+                {t("footer.privacy")}
               </Link>
             </div>
           </div>

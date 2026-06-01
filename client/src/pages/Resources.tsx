@@ -259,6 +259,9 @@ export default function Resources() {
               <Link href="/about" className="underline underline-offset-2 hover:text-foreground transition-colors">
                 About
               </Link>
+              <Link href="/contact" className="underline underline-offset-2 hover:text-foreground transition-colors">
+                Contact
+              </Link>
               <Link href="/privacy" className="underline underline-offset-2 hover:text-foreground transition-colors">
                 Privacy Policy
               </Link>

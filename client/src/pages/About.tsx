@@ -115,10 +115,9 @@ export default function About() {
             <section className="mb-10">
               <h2 className="text-2xl font-display font-bold mb-4">Contact</h2>
               <p className="text-muted-foreground leading-relaxed">
-                For feedback, bug reports, or questions about this tool, please refer to the contact
-                information listed in the{" "}
-                <Link href="/privacy" className="text-primary underline">
-                  Privacy Policy
+                For feedback, bug reports, or questions about this tool, visit the{" "}
+                <Link href="/contact" className="text-primary underline">
+                  contact page
                 </Link>
                 . We read every message, though we may not be able to respond to all enquiries
                 individually.
@@ -153,6 +152,9 @@ export default function About() {
               </Link>
               <Link href="/faq" className="underline underline-offset-2 hover:text-foreground transition-colors">
                 FAQ
+              </Link>
+              <Link href="/contact" className="underline underline-offset-2 hover:text-foreground transition-colors">
+                Contact
               </Link>
               <Link href="/privacy" className="underline underline-offset-2 hover:text-foreground transition-colors">
                 {t("footer.privacy")}

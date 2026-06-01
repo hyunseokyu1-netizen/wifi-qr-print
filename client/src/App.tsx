@@ -13,6 +13,7 @@ import About from "@/pages/About";
 import Resources from "@/pages/Resources";
 import Faq from "@/pages/Faq";
 import UseCasesCafe from "@/pages/UseCasesCafe";
+import Contact from "@/pages/Contact";
 
 function Router() {
   return (
@@ -22,6 +23,7 @@ function Router() {
       <Route path="/resources" component={Resources} />
       <Route path="/faq" component={Faq} />
       <Route path="/use-cases/cafe" component={UseCasesCafe} />
+      <Route path="/contact" component={Contact} />
       <Route path="/about" component={About} />
       <Route path="/privacy" component={Privacy} />
       <Route component={NotFound} />

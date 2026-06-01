@@ -122,6 +122,23 @@ export default function Privacy() {
       <footer className="border-t mt-8 py-6 bg-white">
         <div className="max-w-3xl mx-auto px-4 text-center text-sm text-muted-foreground">
           <p>{t("footer.text")}</p>
+          <div className="mt-3 flex items-center justify-center gap-4 flex-wrap">
+            <Link href="/guide" className="underline underline-offset-2 hover:text-foreground transition-colors">
+              {t("footer.guide")}
+            </Link>
+            <Link href="/resources" className="underline underline-offset-2 hover:text-foreground transition-colors">
+              {t("footer.resources")}
+            </Link>
+            <Link href="/faq" className="underline underline-offset-2 hover:text-foreground transition-colors">
+              FAQ
+            </Link>
+            <Link href="/about" className="underline underline-offset-2 hover:text-foreground transition-colors">
+              {t("footer.about")}
+            </Link>
+            <Link href="/contact" className="underline underline-offset-2 hover:text-foreground transition-colors">
+              Contact
+            </Link>
+          </div>
         </div>
       </footer>
     </div>
