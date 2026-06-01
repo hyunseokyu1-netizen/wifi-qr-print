@@ -148,6 +148,12 @@ export default function About() {
               <Link href="/guide" className="underline underline-offset-2 hover:text-foreground transition-colors">
                 {t("footer.guide")}
               </Link>
+              <Link href="/resources" className="underline underline-offset-2 hover:text-foreground transition-colors">
+                {t("footer.resources")}
+              </Link>
+              <Link href="/faq" className="underline underline-offset-2 hover:text-foreground transition-colors">
+                FAQ
+              </Link>
               <Link href="/privacy" className="underline underline-offset-2 hover:text-foreground transition-colors">
                 {t("footer.privacy")}
               </Link>

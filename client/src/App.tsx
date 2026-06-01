@@ -10,12 +10,16 @@ import Home from "@/pages/Home";
 import Privacy from "@/pages/Privacy";
 import Guide from "@/pages/Guide";
 import About from "@/pages/About";
+import Resources from "@/pages/Resources";
+import Faq from "@/pages/Faq";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/guide" component={Guide} />
+      <Route path="/resources" component={Resources} />
+      <Route path="/faq" component={Faq} />
       <Route path="/about" component={About} />
       <Route path="/privacy" component={Privacy} />
       <Route component={NotFound} />

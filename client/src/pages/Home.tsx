@@ -4,7 +4,7 @@ import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { AdBanner } from "@/components/AdBanner";
 import { useState } from "react";
 import type { InsertWifiConfig } from "@shared/schema";
-import { Wifi, Printer, Shield, WifiOff, ChevronDown, ChevronUp, Building2, Coffee, Home as HomeIcon, Users, Lock, RefreshCw } from "lucide-react";
+import { Wifi, Printer, Shield, WifiOff, ChevronDown, ChevronUp, Building2, Coffee, Home as HomeIcon, Users, Lock, RefreshCw, BookOpen, FileText, ArrowRight } from "lucide-react";
 import { useI18n } from "@/lib/i18n";
 import { Link } from "wouter";
 import { Helmet } from "react-helmet-async";
@@ -220,15 +220,75 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Learning Center */}
+        <section className="mt-20 print:hidden">
+          <div className="text-center mb-10">
+            <h2 className="text-3xl font-display font-bold mb-3">Learn Before You Print</h2>
+            <p className="text-muted-foreground">
+              A good QR card is more than a code. These pages explain the format, privacy model, and practical deployment details.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <Link href="/guide" className="group bg-card rounded-2xl p-6 border border-border/60 shadow-sm hover:border-primary/30 transition-colors">
+              <div className="w-11 h-11 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-4">
+                <BookOpen className="w-5 h-5" />
+              </div>
+              <h3 className="font-display font-bold text-lg mb-2">Guide</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                How WiFi QR codes work, which devices can scan them, and the security choices that matter most.
+              </p>
+              <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                Read the guide
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+              </span>
+            </Link>
+            <Link href="/resources" className="group bg-card rounded-2xl p-6 border border-border/60 shadow-sm hover:border-primary/30 transition-colors">
+              <div className="w-11 h-11 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-4">
+                <FileText className="w-5 h-5" />
+              </div>
+              <h3 className="font-display font-bold text-lg mb-2">Resources</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                Printing tips, scan troubleshooting, guest network checklists, and other practical setup notes.
+              </p>
+              <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                Open resources
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+              </span>
+            </Link>
+            <Link href="/about" className="group bg-card rounded-2xl p-6 border border-border/60 shadow-sm hover:border-primary/30 transition-colors">
+              <div className="w-11 h-11 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-4">
+                <Shield className="w-5 h-5" />
+              </div>
+              <h3 className="font-display font-bold text-lg mb-2">About</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                Why the tool runs locally, what it stores, and how privacy is handled on the site.
+              </p>
+              <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                Read about the tool
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+              </span>
+            </Link>
+          </div>
+        </section>
+
         {/* FAQ */}
         <section className="mt-20 print:hidden">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-display font-bold mb-3">{t("faq.title")}</h2>
           </div>
           <div className="max-w-3xl mx-auto space-y-3">
-            {faqs.map((faq, i) => (
+            {faqs.slice(0, 6).map((faq, i) => (
               <FaqItem key={i} question={faq.q} answer={faq.a} />
             ))}
+          </div>
+          <div className="text-center mt-6">
+            <Link
+              href="/faq"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:opacity-80 transition-opacity"
+            >
+              View all FAQs
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </section>
 
@@ -244,6 +304,12 @@ export default function Home() {
           <div className="flex items-center justify-center gap-4 flex-wrap">
             <Link href="/guide" className="underline underline-offset-2 hover:text-foreground transition-colors">
               {t("footer.guide")}
+            </Link>
+            <Link href="/resources" className="underline underline-offset-2 hover:text-foreground transition-colors">
+              {t("footer.resources")}
+            </Link>
+            <Link href="/faq" className="underline underline-offset-2 hover:text-foreground transition-colors">
+              FAQ
             </Link>
             <Link href="/about" className="underline underline-offset-2 hover:text-foreground transition-colors">
               {t("footer.about")}

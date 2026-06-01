@@ -256,6 +256,12 @@ export default function Guide() {
           <div className="max-w-3xl mx-auto px-4 text-center text-sm text-muted-foreground space-y-2">
             <p>{t("footer.text")}</p>
             <div className="flex items-center justify-center gap-4 flex-wrap">
+              <Link href="/resources" className="underline underline-offset-2 hover:text-foreground transition-colors">
+                {t("footer.resources")}
+              </Link>
+              <Link href="/faq" className="underline underline-offset-2 hover:text-foreground transition-colors">
+                FAQ
+              </Link>
               <Link href="/privacy" className="underline underline-offset-2 hover:text-foreground transition-colors">
                 {t("footer.privacy")}
               </Link>
