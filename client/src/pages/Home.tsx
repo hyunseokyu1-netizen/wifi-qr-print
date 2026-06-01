@@ -183,7 +183,12 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {usecases.map((uc, i) => {
-              const href = i === 1 ? "/use-cases/cafe" : undefined;
+              const hrefMap: Record<number, string> = {
+                0: "/use-cases/airbnb",
+                1: "/use-cases/cafe",
+                3: "/use-cases/home",
+              };
+              const href = hrefMap[i];
               const inner = (
                 <>
                   <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">

@@ -13,6 +13,8 @@ import About from "@/pages/About";
 import Resources from "@/pages/Resources";
 import Faq from "@/pages/Faq";
 import UseCasesCafe from "@/pages/UseCasesCafe";
+import UseCasesAirbnb from "@/pages/UseCasesAirbnb";
+import UseCasesHome from "@/pages/UseCasesHome";
 import Contact from "@/pages/Contact";
 
 function Router() {
@@ -23,6 +25,8 @@ function Router() {
       <Route path="/resources" component={Resources} />
       <Route path="/faq" component={Faq} />
       <Route path="/use-cases/cafe" component={UseCasesCafe} />
+      <Route path="/use-cases/airbnb" component={UseCasesAirbnb} />
+      <Route path="/use-cases/home" component={UseCasesHome} />
       <Route path="/contact" component={Contact} />
       <Route path="/about" component={About} />
       <Route path="/privacy" component={Privacy} />
