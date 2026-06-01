@@ -182,15 +182,32 @@ export default function Home() {
             <p className="text-muted-foreground">{t("usecases.subtitle")}</p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {usecases.map((uc, i) => (
-              <div key={i} className="bg-card rounded-2xl p-6 border border-border/60 shadow-sm flex flex-col gap-4">
-                <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
-                  {uc.icon}
+            {usecases.map((uc, i) => {
+              const href = i === 1 ? "/use-cases/cafe" : undefined;
+              const inner = (
+                <>
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                    {uc.icon}
+                  </div>
+                  <h3 className="font-display font-bold text-lg leading-tight">{uc.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{uc.desc}</p>
+                  {href && (
+                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-primary mt-auto">
+                      Read more <ArrowRight className="w-3 h-3" />
+                    </span>
+                  )}
+                </>
+              );
+              return href ? (
+                <Link key={i} href={href} className="bg-card rounded-2xl p-6 border border-border/60 shadow-sm flex flex-col gap-4 hover:border-primary/30 transition-colors">
+                  {inner}
+                </Link>
+              ) : (
+                <div key={i} className="bg-card rounded-2xl p-6 border border-border/60 shadow-sm flex flex-col gap-4">
+                  {inner}
                 </div>
-                <h3 className="font-display font-bold text-lg leading-tight">{uc.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{uc.desc}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
 
